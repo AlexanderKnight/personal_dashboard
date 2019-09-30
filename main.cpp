@@ -8,7 +8,7 @@ int main()
   initscr(); // Initialize ncurses
   raw(); // Do not hold keyboard input in buffer (no CTL-C to quit)
   noecho(); // Do not print keyboard input unless instructed to
-  keypad(); // allows the use of arrow keys, function keys
+  keypad(stdscr, true); // allows the use of arrow keys, function keys
   clear(); // clear up the screen before we start
 
 
@@ -26,9 +26,27 @@ int main()
 
   /* This is just an experiment to learn how to work with ncurses. */
 
-  printw("Hello World");
+  printw("Type character to see it in bold\n");
+  int ch = getch();
+  if(ch==KEY_F(1))
+    printw("F1 Key pressed");
+
+  else
+  {
+    printw("The pressed key is ");
+    attron(A_BOLD);
+    printw("%c",ch);
+    attroff(A_BOLD);
+  }
   refresh();
   getch();
+
+
+
+
+
+
+  // Close ncurses
   endwin();
   return 0;
 }

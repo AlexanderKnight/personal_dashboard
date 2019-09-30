@@ -1,4 +1,5 @@
-all: main.o
+all: 
+	g++ -lncurses main.cpp -o main.o
 
-main.o:
-	g++ main.cpp -lncurses -o main.o
+remove:
+	rm *.o
